@@ -1,7 +1,18 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const MONGO_URI = "mongodb://localhost:27017/";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/Leetcode";
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.error("MongoDB connection error:", err));
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(MONGO_URI, {
+  
+    });
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+   
+  }
+};
+
+module.exports = connectDB;
